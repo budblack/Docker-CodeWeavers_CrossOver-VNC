@@ -1,18 +1,22 @@
 # CodeWeavers.CrossOver.VNC Docker image
-A docker image for run CrossOver though VNC remote manage.
+A docker image for run CrossOver Linux though VNC remote manage. With the docker image, U can run windows softwares under docker container, instead of much heavier virtual machines. Current installed version: CrossOver Linux 18.1.0
 
-## 最近外网一直不是很好，镜像一直push不到docker hub上面，导致docker hub上面不是最新的，所以大家就自己先build吧
+<!-- ## 最近外网一直不是很好，镜像一直push不到docker hub上面，导致docker hub上面不是最新的，所以大家就自己先build吧
+-->
 
 `sudo docker run -d -p ${VNC_PORT}:5901 -e vnc_password=${YOUR_VNC_PASSWORD} johnshine/crossover-vnc:latest`
 
-
-使用优惠码：CYBERSTEAL9 购买CrossOver Linux一次性版只需9美元
+If YOUR_VNC_PASSWORD or vnc_password argument leave empty, no password need to connect to VNC server, which most used in one\`s own local home network.
+<!-- 使用优惠码：CYBERSTEAL9 购买CrossOver Linux一次性版只需9美元
 
 With promotion Code: CYBERSTEAL9, purchase CrossOver Linux single version only for $9
 
 使用授权证书激活, 证书可以在codeweavers.com官网，我的帐号->我的帐号->我的订单内下载
 
-Activated by license file, license file can be downloaded on codeweavers.com -> My Account -> My Orders
+Activate by license file, that can be downloaded at codeweavers.com -> My Account -> My Orders
+-->
+
+After buy CrossOver Linux license, you could add license file to container as following, that can be downloaded at codeweavers.com -> My Account -> My Orders:
 
 `sudo docker run -d -p ${VNC_PORT}:5901 -v /path/to/license/license.sig:/opt/cxoffice/etc/license.sig -v /path/to/license/license.txt:/opt/cxoffice/etc/license.txt -e vnc_password=${YOUR_VNC_PASSWORD} johnshine/crossover-vnc:latest`
 
@@ -21,6 +25,10 @@ Activated by license file, license file can be downloaded on codeweavers.com -> 
 <!-- ![红包二维码](https://raw.githubusercontent.com/john-shine/DIY-iMac-CN/master/images/barcode.png) -->
 
 ## Change history
+
+1.3 (2018-12-17)
+* fix vnc server fail to start
+* update CrossOver Linux to 18.1.0
 
 1.2
 * retry delete the install binary
@@ -36,7 +44,7 @@ Activated by license file, license file can be downloaded on codeweavers.com -> 
 1.0
 * initialized
 
-## VNC客户端推荐
+## VNC clients recommend
 
 1. [VNC Viewer](https://www.realvnc.com/en/connect/download/viewer/windows/)
 2. [jump desktop](https://jumpdesktop.com/)
