@@ -24,8 +24,6 @@ RUN yum install -y --setopt=tsflags=nodocs kde-l10n-Chinese telnet && \
     yum reinstall -y glibc-common && \
     localedef -c -f UTF-8 -i zh_CN zh_CN.utf8
 
-RUN rm -f ${HOME}/.vnc/72d3d91f9363\:1.log
-
 ENV LC_ALL "zh_CN.UTF-8"  
 
 ENTRYPOINT ["/entrypoint.sh"]
