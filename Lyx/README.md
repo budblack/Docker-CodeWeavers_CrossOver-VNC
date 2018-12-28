@@ -14,10 +14,6 @@ pull镜像到本地
 
 `sudo docker run -d -p 5901:5901 -e vnc_password=your_password johnshine/lyx-crossover-vnc:latest`
 
-还可以绑定默认下载目录到host的某个目录，会自动创建一个
-
-`sudo docker run -d -p 5901:5901 -v /path/to/download/folder:/mnt/drive_d johnshine/lyx-crossover-vnc:latest`
-
 使用VNC客户端连接5901端口即可
 
 ## VNC客户端推荐
