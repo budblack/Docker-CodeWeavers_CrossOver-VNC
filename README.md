@@ -1,12 +1,14 @@
 # CodeWeavers.CrossOver.VNC Docker image
-A docker image for run CrossOver Linux though VNC remote manager. With the docker image, U can run windows softwares under docker container, instead of much heavier virtual machines. Current installed version: CrossOver Linux 18.1.0
+**A docker image** for run **CrossOver Linux** though **VNC remote manager.** 
+
+With the docker image, U can run windows softwares under docker container, instead of much heavier virtual machines. Current installed version: **CrossOver Linux 18.1.0**
 
 <!-- ## 最近外网一直不是很好，镜像一直push不到docker hub上面，导致docker hub上面不是最新的，所以大家就自己先build吧
 -->
 
 `sudo docker run -d -p ${VNC_PORT}:5901 -e vnc_password=${YOUR_VNC_PASSWORD} johnshine/crossover-vnc:latest`
 
-If YOUR_VNC_PASSWORD or vnc_password argument leave empty, no password need to connect to VNC server, which most used in one\`s own local home network.
+If YOUR_VNC_PASSWORD or vnc_password argument **leave empty, no password** need to connect to VNC server, which most used in one\`s own local home network.
 <!-- 使用优惠码：CYBERSTEAL9 购买CrossOver Linux一次性版只需9美元
 
 With promotion Code: CYBERSTEAL9, purchase CrossOver Linux single version only for $9
