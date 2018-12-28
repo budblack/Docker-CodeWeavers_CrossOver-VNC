@@ -10,24 +10,23 @@ RUN yum check-update -y ; \
     yum install -y --setopt=tsflags=nodocs libncurses.so.5 && \
     yum clean all && rm -rf /var/cache/yum/*
 
+
 WORKDIR ${HOME}
-
-ADD entrypoint.sh /entrypoint.sh
-RUN chmod +x /entrypoint.sh
-
-ENTRYPOINT ["/entrypoint.sh"]
 
 USER ${USER}
 
-COPY Init.sh ${HOME}/.cxoffice/Init.sh
-COPY fonts/ /tmp/fonts/
-COPY installers /tmp/installers
+RUN ${INSTALLDIR}/bin/cxbottle --create --bottle "${BOTTLE}" --template "winxp"
+RUN sed -i -e 's/;;"AllowUntrusted" = ""/"AllowUntrusted" = "1"/' ${HOME}/.cxoffice/${BOTTLE}/cxbottle.conf
 
-# Always run the WM last!
-RUN /bin/echo -e "export DISPLAY=${DISPLAY}"  >> ${HOME}/.vnc/xstartup
-RUN /bin/echo -e "[ -r ${HOME}/.Xresources ] && xrdb ${HOME}/.Xresources\nxsetroot -solid grey"  >> ${HOME}/.vnc/xstartup
-RUN /bin/echo -e "if [[ ! -d ${HOME}/.cxoffice/${BOTTLE}/ ]]; then" >> ${HOME}/.vnc/xstartup
-RUN /bin/echo -e "    xterm -maximized -font -*-*-medium-r-*-*-18-*-*-*-*-*-iso8859-* -e ${HOME}/.cxoffice/Init.sh" >> ${HOME}/.vnc/xstartup
-RUN /bin/echo -e "fi" >> ${HOME}/.vnc/xstartup
-RUN /bin/echo -e "${INSTALLDIR}/bin/wine --bottle ${BOTTLE} \"c:\\\\\\\\Program Files\\\\\\\\Lyx\\\\\\\\baidunetdisk.exe\"" >> ${HOME}/.vnc/xstartup
+RUN wget https://raw.githubusercontent.com/john-shine/Docker-CodeWeavers_CrossOver-VNC/master/BaiduNetdisk/fonts/simsun.ttc -O ~/.cxoffice/${BOTTLE}/drive_c/windows/Fonts/simsun.ttc
+RUN wget https://raw.githubusercontent.com/john-shine/Docker-CodeWeavers_CrossOver-VNC/master/Lyx/installers/Lyx.tar.xz -O /tmp/Lyx.tar.xz && tar -Jxf /tmp/Lyx.tar.xz -C ${HOME}/.cxoffice/${BOTTLE}/drive_c/Program\ Files/ && rm -f /tmp/Lyx.tar.xz
+
+RUN ${INSTALLDIR}/bin/wine --bottle ${BOTTLE} --wait-children --wl-app 'reboot.exe'
+ADD xstartup ${HOME}/.vnc/
+RUN sudo chown ${USER}:root ${HOME}/.vnc/xstartup
+
+# Xresource settings
+RUN /bin/echo -e "export DISPLAY=${DISPLAY}\n[ -r ${HOME}/.Xresources ] && xrdb ${HOME}/.Xresources\nxsetroot -solid grey"  >> ${HOME}/.vnc/xstartup
+
+RUN /bin/echo -e "${INSTALLDIR}/bin/wine --bottle ${BOTTLE} \"c:\\\\\\\\Program Files\\\\\\\\Lyx\\\\\\\\LuYouXia.exe\"" >> ${HOME}/.vnc/xstartup
 RUN /bin/echo -e "tail -f /dev/null" >> ${HOME}/.vnc/xstartup
