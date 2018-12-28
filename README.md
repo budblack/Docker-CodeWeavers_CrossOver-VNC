@@ -1,5 +1,5 @@
 # CodeWeavers.CrossOver.VNC Docker image
-A docker image for run CrossOver Linux though VNC remote manage. With the docker image, U can run windows softwares under docker container, instead of much heavier virtual machines. Current installed version: CrossOver Linux 18.1.0
+A docker image for run CrossOver Linux though VNC remote manager. With the docker image, U can run windows softwares under docker container, instead of much heavier virtual machines. Current installed version: CrossOver Linux 18.1.0
 
 <!-- ## 最近外网一直不是很好，镜像一直push不到docker hub上面，导致docker hub上面不是最新的，所以大家就自己先build吧
 -->
@@ -49,3 +49,9 @@ After buy CrossOver Linux license, you could add license file to container as fo
 1. [VNC Viewer](https://www.realvnc.com/en/connect/download/viewer/windows/)
 2. [jump desktop](https://jumpdesktop.com/)
 3. [TightVNC](https://github.com/TigerVNC/tigervnc/releases)
+
+## Built-in applications
+
++ [BaiduNetdisk downloader](https://github.com/john-shine/Docker-CodeWeavers_CrossOver-VNC/tree/master/BaiduNetdisk)
++ [Internet Download Manager](https://github.com/john-shine/Docker-CodeWeavers_CrossOver-VNC/tree/master/Internet%20Download%20Manager)
++ [LuYouXia](https://github.com/john-shine/Docker-CodeWeavers_CrossOver-VNC/tree/master/Lyx)
