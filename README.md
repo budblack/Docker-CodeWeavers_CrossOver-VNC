@@ -5,6 +5,11 @@ With the docker image, U can run windows softwares under docker container, inste
 
 <!-- ## 最近外网一直不是很好，镜像一直push不到docker hub上面，导致docker hub上面不是最新的，所以大家就自己先build吧
 -->
+Pull latest image from Docker hub:
+
+`sudo docker pull johnshine/crossover-vnc:latest`
+
+Then run the image as pull finished:
 
 `sudo docker run -d -p ${VNC_PORT}:5901 -e vnc_password=${YOUR_VNC_PASSWORD} johnshine/crossover-vnc:latest`
 
@@ -25,6 +30,8 @@ After buy CrossOver Linux license, you could add license file to container as fo
 <!-- 如果你对这个项目感兴趣，希望表达一份感谢之情，请打开支付宝<a href="https://mobile.alipay.com/index.htm" target="_blank"><img src="https://raw.githubusercontent.com/john-shine/DIY-iMac-CN/master/images/alipay.png" width="18"></a>扫描下面的二维码，你和我都将获得一份支付宝红包 -->
 
 <!-- ![红包二维码](https://raw.githubusercontent.com/john-shine/DIY-iMac-CN/master/images/barcode.png) -->
+
+Another solution, [Wine VNC](https://github.com/john-shine/Docker-WineHQ-VNC): **Free**, but maybe less stable.
 
 ## Change history
 
